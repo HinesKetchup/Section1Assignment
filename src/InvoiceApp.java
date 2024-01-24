@@ -160,13 +160,20 @@ public class InvoiceApp {
 
             receiptTotal += subTotal;
 
-        } // end of for lop
+        } // end of for loop
 
         System.out.println(InvoiceApp.SINGLE_DASH_LINE);
         System.out.printf("Receipt Total: $%,8.2f\n", receiptTotal);
         System.out.println(InvoiceApp.SINGLE_DASH_LINE);
 
     } // end of printReceipt method
+
+    private static double getDouble(double discountPercent){
+
+        if (subTotal >= 50.0){
+
+        }
+    }
 
     /**
      * Prompt the user for the item description, quantity, and price. Keep looping until the user is done.
