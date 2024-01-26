@@ -139,6 +139,9 @@ public class InvoiceApp {
         String description = "?";
         int qty = 0;
         double price = 0.0;
+        double discountPercent = 0.0 ;
+
+
 
         double subTotal = 0.0;
         double receiptTotal = 0.0;
@@ -158,6 +161,15 @@ public class InvoiceApp {
             System.out.println();
             System.out.printf("%-20s  %3d  @  $%,6.2f = $%,8.2f\n", description, qty, price, subTotal);
 
+            discountPercent = InvoiceApp.getDiscountPercent(subTotal);
+            if (discountPercent > 0.0){
+                double discountAmount = 0.0;
+
+                discountAmount = discountPercent * subTotal;
+                System.out.printf("Discount  %  %3d  @  $%,6.2f = $%,8.2f\n", description, qty, price, subTotal);
+            }
+
+
             receiptTotal += subTotal;
 
         } // end of for loop
@@ -168,11 +180,25 @@ public class InvoiceApp {
 
     } // end of printReceipt method
 
-    private static double getDouble(double discountPercent){
+    private static double getDiscountPercent( double subTotal){
 
-        if (subTotal >= 50.0){
+        double discountPercent = 0.0 ;
 
+        if (subTotal >= 50.0) {
+            discountPercent = 0.25;
+        }else if (subTotal >= 40.0){
+            discountPercent = 0.20;
+        }else if (subTotal >= 30.0){
+            discountPercent = 0.15;
+        }else if (subTotal >= 20.0){
+            discountPercent = 0.10;
+        }else if (subTotal >= 10.0) {
+            discountPercent = 0.05;
+        }else {
+            discountPercent = 0.0;
         }
+
+        return discountPercent;
     }
 
     /**
