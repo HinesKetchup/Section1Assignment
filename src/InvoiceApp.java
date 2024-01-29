@@ -5,9 +5,9 @@ import java.util.Scanner;
 /**
  * Represents an Invoice Calculator.
  *
- * @author <your group programmer names goes here>
- * @version 1.0 <update this to version 2>
- * @link <Your GitHub Repository URL goes here>
+ * @author <Holden Merkel and Hines Mattuch>
+ * @version 2.0
+ * @https://github.com/HinesKetchup/Section1Assignment.git
  */
 public class InvoiceApp {
     /**
@@ -140,7 +140,8 @@ public class InvoiceApp {
         int qty = 0;
         double price = 0.0;
         double discountPercent = 0.0 ;
-
+        double discountAmount = 0.0;
+        double totalSavings = 0.0;
 
 
         double subTotal = 0.0;
@@ -163,23 +164,37 @@ public class InvoiceApp {
 
             discountPercent = InvoiceApp.getDiscountPercent(subTotal);
             if (discountPercent > 0.0){
-                double discountAmount = 0.0;
+
 
                 discountAmount = discountPercent * subTotal;
-                System.out.printf("Discount  %  %3d  @  $%,6.2f = $%,8.2f\n", description, qty, price, subTotal);
+                System.out.printf("          Discount %6.0f%%  -$ %6.2f = $%,8.2f\n", discountPercent * 100, discountAmount, subTotal - discountAmount);
             }
 
 
             receiptTotal += subTotal;
 
         } // end of for loop
+        totalSavings =  discountAmount;
+
+        /**
+         *
+         * If the customer qualified for savings show on recipt
+         */
+
+        if (totalSavings > 0.0){
+            System.out.printf("Total Savings: $%,8.2f\n", totalSavings);
+        }
 
         System.out.println(InvoiceApp.SINGLE_DASH_LINE);
-        System.out.printf("Receipt Total: $%,8.2f\n", receiptTotal);
+        System.out.printf("Receipt Total: $%,8.2f\n", receiptTotal - totalSavings);
         System.out.println(InvoiceApp.SINGLE_DASH_LINE);
 
     } // end of printReceipt method
 
+    /**
+     * calculates discount percent based on the subTotal amount
+     * @Returns discountPercent
+     */
     private static double getDiscountPercent( double subTotal){
 
         double discountPercent = 0.0 ;
