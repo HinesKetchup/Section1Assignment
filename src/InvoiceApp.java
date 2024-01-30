@@ -168,13 +168,15 @@ public class InvoiceApp {
 
                 discountAmount = discountPercent * subTotal;
                 System.out.printf("          Discount %6.0f%%  -$ %6.2f = $%,8.2f\n", discountPercent * 100, discountAmount, subTotal - discountAmount);
+
+                totalSavings += discountAmount;
             }
 
 
             receiptTotal += subTotal;
 
         } // end of for loop
-        totalSavings =  discountAmount;
+
 
         /**
          *
